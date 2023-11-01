@@ -1,5 +1,6 @@
 propellers = require("propeller")
 require("controller")
+require("trigonometry")
 
 function updateController(self,coords,rot,deltaP,deltaR)
 
@@ -52,7 +53,7 @@ while true do
         control.P = (error)
         control.I = control.I + (error)
         control.D = (deltaError)
-        f = control:calculate(1/3,0.03,2/3)
+        f = control:calculate(1/3,3/100,2/3)
         --act.controller:performLogic()
         act:setLevel(f)
         --print(i.."; [v]:"..control.D .. " [p]: " .. control.P)
