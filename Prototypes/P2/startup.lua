@@ -1,6 +1,5 @@
-require("DPP")
 require("controller")
-require("trigonometry")
+require("aritm")
 
 function updateController(self,coords,rot,deltaP,deltaR) end
 
