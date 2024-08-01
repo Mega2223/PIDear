@@ -31,7 +31,13 @@ function flip(vec)
 end
 
 function subtract(vec, amount)
-    vec:add(-amount)
+    if type(amount) =="number" then
+        vec:add(-amount)
+    else
+        amount:flip()
+        vec:add(amount)
+        amount:flip()
+    end
 end
 
 function clone(vec)
