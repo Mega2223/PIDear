@@ -1,5 +1,5 @@
 function dotProduct(vecA, vecB)
-    return vec3(vecA.x * vecB.x, vecA.y * vecB.y, vecA.z * vecB.z)
+    return vecA.x * vecB.x + vecA.y * vecB.y + vecA.z * vecB.z
 end
 
 function getMagnitude(vec)
@@ -7,7 +7,7 @@ function getMagnitude(vec)
 end
 
 function normalize(vec)
-    vec:multiply(1.0/vec.getMagnitude())
+    vec:multiply(1.0 / vec:getMagnitude())
 end
 
 function multiply(vec, amount)
@@ -27,11 +27,11 @@ function add(vec, amount)
 end
 
 function flip(vec)
-    vec.x = -vec.x; vec.y = - vec.y; vec.z = - vec.z
+    vec.x = -vec.x; vec.y = -vec.y; vec.z = -vec.z
 end
 
 function subtract(vec, amount)
-    if type(amount) =="number" then
+    if type(amount) == "number" then
         vec:add(-amount)
     else
         amount:flip()
@@ -41,15 +41,26 @@ function subtract(vec, amount)
 end
 
 function clone(vec)
-    return vec3(vec.x,vec.y,vec.z)
+    return vec3(vec.x, vec.y, vec.z)
 end
 
-function vec3(x,y,z)
+function vecToString(vec)
+    return "Vec3: x=" .. vec.x .. " y=" .. vec.y .. " z=" .. vec.z
+end
+
+function vec3(x, y, z)
     return {
-        x = x, y = y, z = z, size = 3,
+        x = x,
+        y = y,
+        z = z,
+        length = 3,
         getMagnitude = getMagnitude,
         dotProduct = dotProduct,
-        clone = clone, add = add, multiply = multiply, subtract = subtract, normalize = normalize, flip = flip
-        
+        clone = clone,
+        add = add,
+        multiply = multiply,
+        subtract = subtract,
+        normalize = normalize,
+        flip = flip
     }
 end
