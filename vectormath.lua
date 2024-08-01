@@ -18,6 +18,13 @@ function multiply(vec, amount)
     end
 end
 
+function multiplyMat(vec, mat)
+    local x = vec.x * mat[1][1] + vec.y * mat[1][2] + vec.z * mat[1][3]
+    local y = vec.x * mat[2][1] + vec.y * mat[2][2] + vec.z * mat[2][3]
+    local z = vec.x * mat[3][1] + vec.y * mat[3][2] + vec.z * mat[3][3]
+    return vec3(x, y, z)
+end
+
 function add(vec, amount)
     if type(amount) == "number" then
         vec.x = vec.x + amount; vec.y = vec.y + amount; vec.z = vec.z + amount
