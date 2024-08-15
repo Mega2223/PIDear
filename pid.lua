@@ -4,7 +4,7 @@ local function asString(self)
     --    (self.p * self.kp + self.i * self.ki - self.d * self.kd)
     return string.format('kP=%.2f kI=%.2f kD=%2f\np=%.2f i=%.2f d=%.2f	LAST=%.2f', self.kp, self.ki, self.kd, self.p,
         self.i, self.d,
-        self.p * self.kp + self.i * self.ki - self.d * self.kd
+        -(self.p * self.kp + self.i * self.ki + self.d * self.kd)
     )
 end
 
