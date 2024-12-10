@@ -11,7 +11,7 @@ end
 
 local last_control = ''
 function control(e1, e2, e3, e4)
-    last_contorl = string.format('CONTROL: %2d %2d %2d %2d', e1, e2, e3, e4)
+    last_control = string.format('CONTROL: %2d %2d %2d %2d', e1, e2, e3, e4)
     motor_N.setSpeed(e1)
     motor_E.setSpeed(-e2)
     motor_S.setSpeed(e3)
