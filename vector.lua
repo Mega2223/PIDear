@@ -17,10 +17,7 @@ local function times(vec, amount)
     elseif amount.type == "vec3" then
         ret.x = vec.x * amount.x; ret.y = vec.y * amount.y; ret.z = vec.z * amount.z
     elseif amount.type == "matrix" then
-        local data = amount.data
-        ret.x = vec.x * data[1][1] + vec.y * data[1][2] + vec.z * data[1][3] + data[1][4]
-        ret.y = vec.x * data[2][1] + vec.y * data[2][2] + vec.z * data[2][3] + data[1][4]
-        ret.z = vec.x * data[3][1] + vec.y * data[3][2] + vec.z * data[3][3] + data[1][4]
+        return amount:times(vec)
     end
     return ret
 end
@@ -65,7 +62,12 @@ local function asString(vec)
 end
 
 local function asMatrix(vec)
-
+    local ret = Matrix(4, 1)
+    ret:set(1, 1, vec.x)
+    ret:set(1, 1, vec.y)
+    ret:set(1, 1, vec.z)
+    ret:set(1, 1, 1)
+    return ret
 end
 
 function Vec3(x, y, z)
@@ -84,6 +86,7 @@ function Vec3(x, y, z)
         cross = cross,
         magnitude = magnitude,
         toString = asString,
+        asMatrix = asMatrix,
         type = "vec3"
     }
 end

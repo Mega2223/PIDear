@@ -19,6 +19,13 @@ local function times(mat1, scalar)
             end
         end
         return ret
+    elseif scalar.type == "vec3" then
+        local vec3 = scalar
+        local ret = Vec3(0, 0, 0)
+        ret.x = vec3.x * mat1:get(1, 1) + vec3.y * mat1:get(1, 2) + vec3.z * mat1:get(1, 3) + mat1:get(1, 4)
+        ret.y = vec3.x * mat1:get(2, 1) + vec3.y * mat1:get(2, 2) + vec3.z * mat1:get(2, 3) + mat1:get(2, 4)
+        ret.z = vec3.x * mat1:get(3, 1) + vec3.y * mat1:get(3, 2) + vec3.z * mat1:get(3, 3) + mat1:get(3, 4)
+        return ret
     end
 end
 
@@ -46,6 +53,16 @@ local function transpose(mat)
     return ret
 end
 
+local function get(mat, r, c)
+    local ret = mat.data[r][c]
+    if ret == nil then ret = 0 end
+    return ret
+end
+
+local function set(mat, r, c, val)
+    mat.data[r][c] = val
+end
+
 function Identity(n)
     local mat = Matrix(n, n)
     for i = 1, n do mat.data[i][i] = 1 end
@@ -67,6 +84,8 @@ function Matrix(r, c)
         toString = toString,
         type = "matrix",
         times = times,
+        set = set,
+        get = get,
         transpose = transpose
     }
 end
