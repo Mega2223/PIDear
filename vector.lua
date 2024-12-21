@@ -7,7 +7,7 @@ local function magnitude(vec)
 end
 
 local function normal(vec)
-    return vec:times(1.0 / vec:getMagnitude())
+    return vec:times(1.0 / vec:magnitude())
 end
 
 local function times(vec, amount)
@@ -48,7 +48,7 @@ local function minus(vec, amount)
     if type(amount) == "number" then
         return vec:plus(-amount)
     elseif amount.type == "vec3" then
-        amount:flip()
+        amount = amount:flip()
         return vec:plus(amount)
     end
 end

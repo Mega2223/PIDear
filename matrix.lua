@@ -89,3 +89,18 @@ function Matrix(r, c)
         transpose = transpose
     }
 end
+
+function MatFromDict(dict)
+	i = 1
+	while dict[i] ~= nil do i = i + 1 end
+	a = i; i = 0
+	while dict[1][i] ~= nil do i = i + 1 end
+	b = i
+	ret = Matrix(a,b)
+	for j = 1, ret.r do
+		for k = 1, ret.c do
+			ret.data[j][k] = dict[j][k]
+		end
+	end
+	return ret
+end
