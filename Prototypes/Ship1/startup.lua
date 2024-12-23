@@ -42,13 +42,13 @@ function navigateTo(target)
 		local posDiff = target:minus(pos); posDiff.y = 0
 		local rotated = getRotated()
 		local rotDiff = getRotation(rotated,posDiff:normal())
-        local amount = rotDiff * 400
-		local accelV = ( rotated:normal():dot(posDiff:normal()) ) * posDiff:magnitude() * 10 - ( vel:magnitude() * 250)
+  local amount = rotDiff * 400
+		local accelV = ( rotated:normal():dot(posDiff:normal()) ) * math.min(posDiff:magnitude() * 10,750) - ( vel:magnitude() * 100)
 		print('rotDiff = ' .. math.floor(math.deg(rotDiff)))
 		print('accel = ' .. accelV)
 		print('vel = ' .. vel:magnitude())
 		print('')
-        turn(amount)
+  turn(amount)
 		if math.abs(rotDiff) <= math.rad(5) then
 			accel(accelV)
 		else
@@ -62,4 +62,4 @@ function navigateTo(target)
 	print('Done :)')
 end
 
-navigateTo(Vec3(0,0,0))
+--navigateTo(Vec3(5000,0,2000))
